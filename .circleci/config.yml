@@ -1,0 +1,26 @@
+version: 2.0
+jobs: 
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
+    steps:
+      - checkout
+      - run:
+          name: Restore Packages of App.Tests
+          command: 
+            cd App.Tests/
+            dotnet restore
+            dotnet test
+            cd ..
+      - run:
+          name: Build App.Tests
+          command: 
+            cd App.Tests/
+            dotnet build
+            cd ..
+      - run:
+          name: Test App.Tests
+          command: 
+            cd App.Tests/
+            dotnet test
+            cd ..
