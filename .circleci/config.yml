@@ -5,15 +5,12 @@ jobs:
       - image: mcr.microsoft.com/dotnet/core/sdk:3.1
     steps:
       - checkout
-      - run: 
-          name: change directory
-          command: cd App.Tests/
       - run:
           name: Restore Packages of App.Tests
-          command: dotnet restore
+          command: cd App.Tests/ && dotnet restore
       - run:
           name: Build App.Tests
-          command: dotnet build
+          command: cd App.Tests/ && dotnet build
       - run:
           name: Test App.Tests
-          command: dotnet test
+          command: cd App.Tests/ && dotnet test
